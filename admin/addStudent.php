@@ -7,5 +7,6 @@ mysql_connect($hots, $user, $password);
 mysql_select_db($base);
 mysql_query("INSERT INTO etudiant (nomEtudiant,adresseEtudiant,noSecu) VALUES('$name','$adress','$secuNum') ");
 mysql_close();
-header('location:studentTool.php');
+$return = "null";
+header("location:studentTool.php?return=$return");
 ?>
