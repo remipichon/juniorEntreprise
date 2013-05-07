@@ -1,4 +1,7 @@
 <?php
+/*appeler par studyTool
+ * ici on récupère simplement par la méthode POST les données des input, même duration qui a pourtant été calculée en javascript mais passée via la méthode Alaromano
+ */
 $noEnts = $_POST['corpId'];
 $startDate = $_POST['startDate'];
 $duration = $_POST['duration'];
@@ -21,4 +24,7 @@ if (mysql_errno()) { //1452(clef etrangere non referecee en clef primaire)      
 }
 
 mysql_close();
+//ici on retourne l'erreur sql sous forme de alert javascript
 header("location:studyTool.php?return=$return");
+
+?>
