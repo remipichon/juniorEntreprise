@@ -1,0 +1,46 @@
+.menu
+{
+    position:absolute;
+    left:50px;
+    top:100px;
+    width:100px;
+    color:blue;
+    border-radius:5%;
+    border-color: #990000;
+    border-style : solid;
+    border-width: 3px;
+
+}
+
+.menu a {
+    display : block;
+    border: solid 1px;
+    width: 100%;
+    
+    
+}
+.contenu
+{
+    position:absolute;
+    top:50px;
+    left:200px;
+    width:500px;
+    color : black;
+    background-image src="thes.jpg";
+
+}
+
+#footer {
+    display: block;
+    position: fixed;
+    width:90%;
+   
+    height: 70px;
+    background-color: #cc0000;
+    border-radius: 10%;
+    
+}
+
+p {
+    font-color:black;
+}
