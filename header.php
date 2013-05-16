@@ -3,10 +3,14 @@
      <link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
     <link rel="stylesheet" type="text/css" href="css/alertify.core.css"></link>
     <link rel="stylesheet" type="text/css" href="css/alertify.default.css"></link>   
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"></link>   
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.css"></link>   
+    <link rel="stylesheet" type="text/css" href="css/test bootstrap.css"></link>   
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/alertify.js"></script>
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 
     <!--pour google sphere-->
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
@@ -34,6 +38,20 @@
             
             $('#submitStudent').trigger('click');     //simule le click pour envoyer le formulaire POST
         }
+        
+        //en construction, pas utilisée
+        jQuery.fn.addInputStudent = function() {                
+                            
+                /*
+                 * Lorsqu'on appuie sur une touche dans l'input de this :
+                 *      -on ajoute après ce dernier un nouveau champ de saisi (le insertAfter)
+                 *      -et on lui affecte la fonction addInput() (celle dans laquelle on est)
+                 */
+                $(this).on('keydown.add', function() {      
+                    $("<label for='participant'> Participant </label><input class='student' type='text' name='student[]'/>").insertAfter($(this)).addInput();
+                    $(this).off(".add");
+                });
+            };
     </script>
 
 </head>

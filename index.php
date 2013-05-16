@@ -3,7 +3,7 @@
     <?php require 'header.php'; ?>
     <body>
         <?php require 'menu.php'; ?>
-<!--        <div>
+        <div>
             google sphere
             <g:panoembed id='sphereHome' imageurl="https://lh4.googleusercontent.com/-Oqf0-IYmTQk/UYvWQLdAoDI/AAAAAAAAAZI/n2soSS9nrZ8/w924-h352-no/13+-+1"
                          fullsize="4096,2048"
@@ -20,7 +20,7 @@
                 gapi.panoembed.go();
             </script>
 
-        </div>-->
+        </div>
 
 
         <div>
