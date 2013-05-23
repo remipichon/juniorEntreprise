@@ -56,7 +56,7 @@
                         CKEDITOR.inline('newadress');
                         CKEDITOR.inline('newnumSecu');
                     </script>
-
+                    
                     <!--gestion specifique a l'ajout-->
                     <script>
                         $('.new').on('mousedown.clear', function(event) {
