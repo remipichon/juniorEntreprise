@@ -35,14 +35,14 @@
         while ($tuple = mysql_fetch_object($request)) {
             //etudiant
             $id = $tuple->noEtudiant;
-            $name = $tuple->nomEtudiant;
-            $adress = $tuple->adresseEtudiant;
-            $secu = $tuple->noSecu;
-            echo "<tr><td>$id</td><td>$name</td><td>$adress</td><td>$secu</td>";
+            $nom = $tuple->nomEtudiant;
+            $adresse = $tuple->adresseEtudiant;
+            $noSecu = $tuple->noSecu;
+            echo "<tr><td>$id</td><td>$nom</td><td>$adresse</td><td>$noSecu</td>";
             echo"<td><a href=\"modifyStudent.php?id=$id\">MODIFIER</a></td>";
             echo "<td><a href=\"deleteStudent.php?id=$id\">DELETE</a></td></tr>";
             
-            //ses équipes
+            //ses ï¿½quipes
             
             $participant=mysql_query("SELECT noEquipe FROM participant WHERE noEtudiant='$id'");
             while( $tupleparticipant = mysql_fetch_object($participant)) {
@@ -50,11 +50,8 @@
                 $team = mysql_fetch_object(mysql_query("SELECT * FROM equipe WHERE noEquipe='$idTeam'"));
                 $idResp = $team->noResp;
                 $idEtude = $team->noEtude;
-                echo "<tr><td>team : $idTeam</td><td> resp : $idResp</td><td> etude : $idEtude</td><td></td><td></td></tr>";
-                
-                
-            }           
-            
+                echo "<tr><td>team : $idTeam</td><td> resp : $idResp</td><td> etude : $idEtude</td><td></td><td></td></tr>";        
+            }               
             
         }
         echo '</table>';

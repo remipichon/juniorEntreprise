@@ -1,11 +1,11 @@
 <html>
     <head>
         <title>viewCorp</title>
-<!--        Cette page permet d'ajouter une étude en selectionnant une entreprise via un menu déroulant. Les dates sont gérées dans des 
-        calendriers jquery, la durée est calculée via javascript, les données sont envoyées par méthode POST à addStudy.php
+<!--        Cette page permet d'ajouter une ï¿½tude en selectionnant une entreprise via un menu dï¿½roulant. Les dates sont gï¿½rï¿½es dans des 
+        calendriers jquery, la durï¿½e est calculï¿½e via javascript, les donnï¿½es sont envoyï¿½es par mï¿½thode POST ï¿½ addStudy.php
         
-        Cette page permet également d'afficher toutes les études et l'équipe qui lui est affectée. Si aucune équine n'est affectée, 
-        un bouton "affectation équipe" permet d'accèder à l'utilitaire d'affectation (assignTeam.php)-->
+        Cette page permet ï¿½galement d'afficher toutes les ï¿½tudes et l'ï¿½quipe qui lui est affectï¿½e. Si aucune ï¿½quine n'est affectï¿½e, 
+        un bouton "affectation ï¿½quipe" permet d'accï¿½der ï¿½ l'utilitaire d'affectation (assignTeam.php)-->
 
         <script type="text/javascript" src="../js/jquery.js"></script>
         <script type="text/javascript" src="../js/jquery-ui.js"></script>
@@ -18,12 +18,11 @@
             <p> voici les etudes </p>
         </div>
         
-<!--        Formulaire d'ajout avec un menu déroulant pour le choix de l'entreprise, deux champs de dates, un champ durée qui est rempli automatique
-        un champ text convention et un champ prix journée-->
+<!--        Formulaire d'ajout avec un menu dï¿½roulant pour le choix de l'entreprise, deux champs de dates, un champ durï¿½e qui est rempli automatique
+        un champ text convention et un champ prix journï¿½e-->
         <h2>Ajout</h2>
-        <form action="addStudy.php" method="post">
-            
-<!--            menu déroulant pour le choix de l'entreprise. Les données de l'entreprises sont récupérées de la base de données via du php
+        <form action="addStudy.php" method="post">            
+<!--            menu dï¿½roulant pour le choix de l'entreprise. Les donnï¿½es de l'entreprises sont rï¿½cupï¿½rï¿½es de la base de donnï¿½es via du php
             ensuite, l'attribut selected du input gere la liste de choix-->
             <select name="corpId">
                 <option value="-1" selected="selected">Choisir une entreprise</option>
@@ -40,8 +39,8 @@
             </select>
 
 
-<!--            Gestion des dates, deux input datePicker et un input durée auto-rempli
-            La gestion des calendriers se fait en javascript ainsi que le calcul de la durée-->
+<!--            Gestion des dates, deux input datePicker et un input durï¿½e auto-rempli
+            La gestion des calendriers se fait en javascript ainsi que le calcul de la durï¿½e-->
             <p id="startDateP"> Date debut <input type="text" class="datePicker" name="startDate" id="startDate"/>   </p>
             Duree : <input type='text' name='duration' id="duration" />
             <p> Date fin <input type="text" class="datePicker" name="endDate" id="endDate"/>   </p>
@@ -50,14 +49,14 @@
                 //$(".datePicker").datepicker({dateFormat: "yy-mm-dd"});
                 $("#startDate").datepicker({            //initialisation du calendrier de date debut
                     //dateFormat: "yy-mm-dd",
-                    onClose: function(value, date) {    //à la fermeture de calendrier date debut, le calendrier date fin est init (ce n'est donc qu'un champ text classique tant qu'on touche pas à date debut. Si tu cliques sur l'input date fin sans passer par date debut, le champ input n'aura pas le calendrier. 
+                    onClose: function(value, date) {    //ï¿½ la fermeture de calendrier date debut, le calendrier date fin est init (ce n'est donc qu'un champ text classique tant qu'on touche pas ï¿½ date debut. Si tu cliques sur l'input date fin sans passer par date debut, le champ input n'aura pas le calendrier. 
                         $("#endDate").datepicker({
-                            minDate: new Date(date.selectedYear, date.selectedMonth, date.selectedDay),     //on init le calendrier date fin afin de restreindre la date à une date plus grande que la date debut
-                            onClose: function(valueEnd, dateEnd) {          //à la fermeture du calendrier de date fin, le calcul de la durée est effectuée
+                            minDate: new Date(date.selectedYear, date.selectedMonth, date.selectedDay),     //on init le calendrier date fin afin de restreindre la date ï¿½ une date plus grande que la date debut
+                            onClose: function(valueEnd, dateEnd) {          //ï¿½ la fermeture du calendrier de date fin, le calcul de la durï¿½e est effectuï¿½e
                                 var d2 = new Date(date.selectedYear, date.selectedMonth, date.selectedDay);
                                 var d1 = new Date(dateEnd.selectedYear, dateEnd.selectedMonth, dateEnd.selectedDay);
                                 var duration = Math.ceil((d1.getTime() - d2.getTime()) / (1000 * 60 * 60 * 24));
-                                $('#duration').attr("value", duration);     //ecriture de la durée dans l'input durée. Cette technique dite Alaromano permet de faire de l'envoie de variable javacsript à un script php en passant par la méthode POST. Il aurait fallu faire du ajax pour être propre
+                                $('#duration').attr("value", duration);     //ecriture de la durï¿½e dans l'input durï¿½e. Cette technique dite Alaromano permet de faire de l'envoie de variable javacsript ï¿½ un script php en passant par la mï¿½thode POST. Il aurait fallu faire du ajax pour ï¿½tre propre
                             }
                         });
 
@@ -78,8 +77,8 @@
         
         <!--affichage des etudes-->
         <?php
-        /*Pour récupérer une eventuelle erreur sql passée par la methode GET, utile pour deboguer, disparaitra par la suite
-         * le return en question doit être une commande javascript (typiquement une alert() ou un console.log()
+        /*Pour rï¿½cupï¿½rer une eventuelle erreur sql passï¿½e par la methode GET, utile pour deboguer, disparaitra par la suite
+         * le return en question doit ï¿½tre une commande javascript (typiquement une alert() ou un console.log()
          */
         $return = $_GET['return'];
         if ($return && $return != "null") {
@@ -94,8 +93,8 @@
         mysql_select_db($base) or die('Base de donnes inexistante');
         $request = mysql_query('SELECT * FROM etude');
         
-        /*affichage de toutes les études en mode tableau*/
-        echo '<table><tr><td>numero</td><td>convention</td><td>date de debut</td><td>duree</td><td>date de fin</td><td>prix journée</td></tr>';
+        /*affichage de toutes les ï¿½tudes en mode tableau*/
+        echo '<table><tr><td>numero</td><td>convention</td><td>date de debut</td><td>duree</td><td>date de fin</td><td>prix journï¿½e</td></tr>';
         while ($tuple = mysql_fetch_object($request)) {
             $id = $tuple->noEtude;
             $startDate = $tuple->dateDebut;
@@ -109,7 +108,7 @@
             echo "<td><a href=\"deleteStudy.php?id=$id\&amp;test=$id\">DELETE</a></td>";
 
             
-            /*affichage des équipes associées à l'étude qui vient d'être affichée*/
+            /*affichage des ï¿½quipes associï¿½es ï¿½ l'ï¿½tude qui vient d'ï¿½tre affichï¿½e*/
             $team = mysql_query("SELECT * FROM equipe WHERE noEtude='$id'");
             if (mysql_num_rows($team) === 0) {      //si aucune equipe, on affiche le lien qui envoie vers l'outil d'affectation*/
                 echo "<td><a href=\"teamTool.php?id=$id&amp;test=$id\">affectation equipe</a></td></tr>";

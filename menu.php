@@ -1,13 +1,15 @@
 
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div class="menu" >
     <a href="index.php">Accueil</a>
 
     <p class="span12"> Mode admin uniquement (old)</p>
-    <a class="span3" href="admin/studentTool.php?return='null'">voir/editer etudiant</a>
-    <a class="span3" href="admin/corpTool.php?return='null'">voir/editer entreprise</a>
-    <a class="span3" href="admin/studyTool.php?return='null'">voir/editer etude</a>
-
+    <a class="span3" href="admin/studentTool.php?return='null'">Etudiant</a>
+    <a class="span3" href="admin/corpTool.php?return='null'">Entreprise</a>
+    <a class="span3" href="admin/studyTool.php?return='null'">Editer étude</a>
+    <a class="span3" href="admin/fraistool.php?return='null'">Frais</a>
+    <a class="span3" href="admin/indemnitesTool.php?return='null'">Indemnités</a>
+    <a class="span3" href="admin/craTool.php">Compte rendu d'activité</a>
 
     <p class="span12"> mode hybride wysiwyg</p>
     <a class="span3" href="student.php?return='null'">voir/editer etudiant</a>
