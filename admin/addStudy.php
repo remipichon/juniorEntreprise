@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?php
 /*appeler par studyTool
  * ici on r�cup�re simplement par la m�thode POST les donn�es des input, m�me duration qui a pourtant �t� calcul�e en javascript mais pass�e via la m�thode Alaromano

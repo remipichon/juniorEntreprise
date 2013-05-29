@@ -8,7 +8,7 @@
     <a class="span3" href="admin/corpTool.php?return='null'">Entreprise</a>
     <a class="span3" href="admin/studyTool.php?return='null'">Editer étude</a>
     <a class="span3" href="admin/fraistool.php?return='null'">Frais</a>
-    <a class="span3" href="admin/indemnitesTool.php?return='null'">Indemnités</a>
+    <a class="span3" href="admin/indemnitesSelectEtudiant.php">Indemnités</a>
     <a class="span3" href="admin/craTool.php">Compte rendu d'activité</a>
 
     <p class="span12"> mode hybride wysiwyg</p>

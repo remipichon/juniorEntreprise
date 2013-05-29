@@ -1,4 +1,5 @@
 <html>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <head>
         <title>viewCorp</title>
     </head>
@@ -43,7 +44,6 @@
             echo "<tr><td>$id</td><td>$nom</td><td>$adress</td><td>$phone</td>";
             echo"<td><a href=\"modifyCorp.php?id=$id\">MODIFIER    </a></td>";
             echo "<td><a href=\"deleteCorp.php?id=$id\&amp;test=$id\">DELETE</a></td></tr>";
-            
             //ses etudes
             
             $etude=mysql_query("SELECT * FROM etude WHERE noEnts='$id'");
