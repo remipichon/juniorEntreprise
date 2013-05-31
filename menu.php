@@ -10,6 +10,7 @@
     <a class="span3" href="admin/fraistool.php?return='null'">Frais</a>
     <a class="span3" href="admin/indemnitesSelectEtudiant.php">Indemnités</a>
     <a class="span3" href="admin/craTool.php">Compte rendu d'activité</a>
+    <a class="span3" href="admin/factureTool.php">Facturation</a>
 
     <p class="span12"> mode hybride wysiwyg</p>
     <a class="span3" href="student.php?return='null'">voir/editer etudiant</a>

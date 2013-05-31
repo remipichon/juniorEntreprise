@@ -24,9 +24,9 @@
             mysql_connect($host, $user, $password) or die('Impossible de se connecter au SGBD');
             mysql_select_db($base) or die('Base de donnes inexistante');
             $request = mysql_query("select etude.noEtude,cra.duree, prixJournee from etudiant join cra on etudiant.noEtudiant=cra.noEtudiant join etude on cra.noEtude=etude.noEtude where etudiant.noEtudiant='$noEtudiant'");
-      
+             
             echo 'Voici la liste des etudes et les rémunérations nécessaire<br/>';
-            echo '<table><tr><td>num etude</td><td>temps travaillé</td><td>taux journalier</td><td>taux journalier étudiant</td></tr>';
+            echo '<table><tr><td>num etude</td><td>temps travaillé</td><td>taux journalier</td><td>taux journalier étudiant</td><td>nombre etudiant dans l\'équipe</td></tr>';
             while ($tuple = mysql_fetch_object($request)) {
             //
             $noEtude = $tuple->noEtude;
@@ -34,12 +34,29 @@
             $prixJournee = $tuple->prixJournee;
             $tauxEtudiant = $prixJournee/2;
             echo "<tr><td>$noEtude</td><td>$duree</td><td>$prixJournee</td><td>$tauxEtudiant</td>";
-            echo"<td><a href=\"modifyIndemnites.php?id=$noEtude\">MODIFIER</a></td>";
-            echo "<td><a href=\"deleteIndemnites.php?id=$noEtude\">DELETE</a></td></tr>";   
             }
             echo '</table>';
-          mysql_close();
-        ?>
+            mysql_close();
+            ?>
+            
+            <!-- Les montants sont calculés à partir du nombre d'étudiant par projet : taux jouranlieretudiant=tauxjournalierprojet/nombreetudiant -->
+            <?php              
+            require 'bin/params.php';
+            mysql_connect($host, $user, $password) or die('Impossible de se connecter au SGBD');
+            mysql_select_db($base) or die('Base de donnes inexistante');
+            $nbetudiant = mysql_query("SELECT noEquipe, COUNT(noEtudiant) FROM participant where noEquipe in(SELECT noEquipe FROM participant where noEtudiant='$noEtudiant') group by noEquipe");
+      
+            echo '<p>Nombre d\'étudiants par équipe <br/>';
+            
+            // Print out result
+            while($row = mysql_fetch_array($nbetudiant)){
+            echo "There are ". $row['COUNT(noEtudiant)'] ." étudiants dans l'équipe ". $row['noEquipe'] ;
+            echo "<br />";
+            }
+            
+            echo '</table></p>';
+            mysql_close();
+            ?>
             
             
             <?php
