@@ -1,12 +1,13 @@
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>viewStudent</title>
     </head>
     <body>
         <div>
-            <p> voici les etudiants </p>
+            <h1>Etudiants </h1>
         </div>
-
+        <div>
         <h2>Ajout</h2>
         <form action="addStudent.php" method="post">
             Nom : <input name="name" type="text" /><br/>
@@ -15,8 +16,11 @@
             <input type="submit" value="Ajouter Etudiant" /><br/>
 
         </form>
-
-
+        </div>    
+        <div>
+        <h2>Liste des étudiants</h2>
+        
+         
         <?php        
          $return = $_GET['return'];
         if ($return && $return != "null") {
@@ -30,7 +34,7 @@
         mysql_connect($host, $user, $password) or die('Impossible de se connecter au SGBD');
         mysql_select_db($base) or die('Base de donnes inexistante');
         $request = mysql_query('SELECT * FROM etudiant');
-      
+        
         echo '<table><tr><td>num</td><td>nom</td><td>adresse</td><td>num secu</td></tr>';
         while ($tuple = mysql_fetch_object($request)) {
             //etudiant
@@ -57,5 +61,6 @@
         echo '</table>';
           mysql_close();
         ?>
+        </div>
     </body>
 </html>

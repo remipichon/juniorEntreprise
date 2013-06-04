@@ -22,7 +22,7 @@ $HTTP_USER_AGENT=getenv("HTTP_USER_AGENT"); /* Navigateur du visiteur */
 /* On vérifie si on est en local ou sur Internet pour pouvoir tester le programme en local */
 if ($HTTP_HOST!="localhost")
 {
-$serveur = "mysql.free.fr";
+$serveur = "localhost";
 $loginsql = "root";
 $passsql = "root";
 }else

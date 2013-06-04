@@ -1,11 +1,11 @@
 <html>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <head>
-        <title>viewCorp</title>
+        <title>Entreprises clientes</title>
     </head>
     <body>
         <div>
-            <p> voici les entreprises </p>
+            <h1>Entreprises clientes</h1>
         </div>
 
         <h2>Ajout</h2>
@@ -17,7 +17,8 @@
 
         </form>
 
-
+        <div>
+            <h2>Voici la liste des enterprises enregistrées</h2>
         <?php
         $return = $_GET['return'];
 
@@ -43,7 +44,7 @@
 
             echo "<tr><td>$id</td><td>$nom</td><td>$adress</td><td>$phone</td>";
             echo"<td><a href=\"modifyCorp.php?id=$id\">MODIFIER    </a></td>";
-            echo "<td><a href=\"deleteCorp.php?id=$id\&amp;test=$id\">DELETE</a></td></tr>";
+            echo "<td><a href=\"deleteCorp.php?id=$id\">DELETE</a></td></tr>";
             //ses etudes
             
             $etude=mysql_query("SELECT * FROM etude WHERE noEnts='$id'");
