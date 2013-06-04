@@ -3,7 +3,7 @@
 <div class="menu" >
     <a href="index.php">Accueil</a>
 
-    <p class="span12"> Mode admin uniquement (old)</p>
+    <a class="span3" href="sessions/sessions.php">Sessions</a>
     <a class="span3" href="admin/studentTool.php?return='null'">Etudiant</a>
     <a class="span3" href="admin/corpTool.php?return='null'">Entreprise</a>
     <a class="span3" href="admin/studyTool.php?return='null'">Editer étude</a>

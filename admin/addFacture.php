@@ -1,12 +1,12 @@
 <?php
-$name = $_POST['name'];
-$adress = $_POST['adress'];
-$secuNum = $_POST['secuNum'];
+$date = $_POST['date'];
+$montant = $_POST['montant'];
+$noEtude = $_POST['noEtude'];
 require 'bin/params.php';
 mysql_connect($host, $user, $password);
 mysql_select_db($base);
-mysql_query("INSERT INTO etudiant (nomEtudiant,adresseEtudiant,noSecu) VALUES('$name','$adress','$secuNum') ");
+mysql_query("INSERT INTO facture (date,montant,noEtude) VALUES('$date','$montant','$noEtude') ");
+mysql_query("UPDATE etude set statut=1 where noEtude=$noEtude ");
 mysql_close();
-$return = "null";
-header("location:studentTool.php?return=$return");
+header("location:factureTool.php");
 ?>
