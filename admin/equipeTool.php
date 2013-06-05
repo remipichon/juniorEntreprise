@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>Etudiants </title>
+        <title>Equipe </title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
         <link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
@@ -40,7 +40,7 @@
                 </nav>
             </div>
         </header>
-        
+
         <!-- /#gallery -->
         <div class="main-box">
             <div class="container">
@@ -48,25 +48,11 @@
                     <div class="wrapper">
                         <!-- aside -->
                         <aside>
-                            <h2>Ajouter <span>Etudiant</span></h2>
+                            <h2>Ajouter <span>Equipe</span></h2>
                             <!-- .contacts -->
-                            <form id="contacts-form" action="addStudent.php" method="post">
+                            <form id="contacts-form" action="addEquipe.php" method="post">
                                 <fieldset>
-                                    <div class="field">
-                                        <label> Nom :</label>
-                                        <input name="name" type="text" value=""/>
-                                    </div>
-                                    <div class="field">
-                                        <label>Adresse :</label>
-                                        <input name="adress" type="text" value=""/>
-                                    </div>
-                                    <div class="field">
-                                        <label>N° sécurité sociale :</label>
-                                        <input name="secuNum" type="text" value=""/>
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="Ajouter Etudiant" /><br/>
-                                    </div>
+                                    
                                 </fieldset>
                             </form>
 
@@ -74,7 +60,7 @@
                         <!-- content -->
                         <section id="content">
                             <article>
-                                <h2>Nos <span>Etudiant</span></h2>
+                                <h2>Nos <span>Equipe</span></h2>
                                 <ul class="contacts">
 
                                     <?php
@@ -89,29 +75,24 @@
                                     require 'bin/params.php';
                                     mysql_connect($host, $user, $password) or die('Impossible de se connecter au SGBD');
                                     mysql_select_db($base) or die('Base de donnes inexistante');
-                                    $request = mysql_query('SELECT * FROM etudiant');
+                                    $requestequipe = mysql_query("select equipe.noEquipe,etude.noEtude,convention,noResp, nomEtudiant from equipe join etude on etude.noEtude=equipe.noEtude join etudiant on etudiant.noEtudiant=equipe.noResp");
 
-                                    echo '<table><tr><td>NUM</td><td>NOM</td><td class="big">ADRESSE</td><td>NUM SECU</td></tr>';
-                                    while ($tuple = mysql_fetch_object($request)) {
+                                    while ($tuple = mysql_fetch_object($requestequipe)) {
                                         //etudiant
-                                        $id = $tuple->noEtudiant;
-                                        $nom = $tuple->nomEtudiant;
-                                        $adresse = $tuple->adresseEtudiant;
-                                        $noSecu = $tuple->noSecu;
-                                        echo "<tr><td>$id</td><td>$nom</td><td>$adresse</td><td>$noSecu</td>";
-                                        echo"<td><a href=\"modifyStudent.php?id=$id\">MODIFIER    </a></td>";
-                                        echo "<td><a href=\"deleteStudent.php?id=$id\">DELETE</a></td></tr>";
-
-                                        //ses �quipes
-
-                                        $participant = mysql_query("SELECT noEquipe FROM participant WHERE noEtudiant='$id'");
-                                        while ($tupleparticipant = mysql_fetch_object($participant)) {
-                                            $idTeam = $tupleparticipant->noEquipe;
-                                            $team = mysql_fetch_object(mysql_query("SELECT * FROM equipe WHERE noEquipe='$idTeam'"));
-                                            $idResp = $team->noResp;
-                                            $idEtude = $team->noEtude;
-                                            echo "<tr><td>team : $idTeam</td><td> resp : $idResp</td><td> etude : $idEtude</td><td></td><td></td></tr>";
-                                        }
+                                        $id = $tuple->noEquipe;
+                                        $noEtude = $tuple->noEtude;
+                                        $convention = $tuple->convention;
+                                        $noResp = $tuple->noResp;
+                                        $nomResp = $tuple->nomEtudiant;
+                                        echo "<div><h3>Etude : $convention</h3></br>Responsable : $nomResp</h3></br>";
+                                        
+                                        $requestteam = mysql_query("select * from equipe join participant on participant.noEquipe=equipe.noEquipe join etudiant on etudiant.noEtudiant=participant.noEtudiant where (equipe.noEquipe='$id' and nomEtudiant !='$nomResp' )");
+                                                while ($tuple = mysql_fetch_object($requestteam)) {
+                                                    $membre = $tuple->nomEtudiant;
+                                                    echo "Membre de l'équipe : $membre</br>";
+                                                }
+                                                echo "</div></br>";
+                               
                                     }
                                     echo '</table>';
                                     mysql_close();
@@ -123,12 +104,12 @@
                 </div>
             </div>
         </div>
-  <!-- footer -->
-  <footer>
-    <div class="container">
-    	<div class="wrapper"></div>
-    </div>
-  </footer>
-  <script type="text/javascript"> Cufon.now(); </script>
-</body>
+        <!-- footer -->
+        <footer>
+            <div class="container">
+                <div class="wrapper"></div>
+            </div>
+        </footer>
+        <script type="text/javascript"> Cufon.now();</script>
+    </body>
 </html>

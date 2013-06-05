@@ -29,6 +29,7 @@
                 <nav>
                     <ul>
                         <li><a href="studentTool.php?return='null">Etudiant</a></li>
+                        <li><a href="equipeTool.php?return='null">Equipes</a></li>
                         <li><a href="corpTool.php?return='null'">Entreprise</a></li>
                         <li><a href="studyTool.php?return='null'">Etude</a></li>
                         <li><a href="fraistool.php?return='null'">Frais</a></li>
@@ -51,7 +52,9 @@
                             <!-- .contacts -->
                             <?php
                             $noEtudiant = $_POST['noEtudiant'];
+                            $message = $_POST['return'];
                             echo "Numéro d'étudiant : $noEtudiant<br/>";
+                            echo "message : $message<br/>";
                             ?>
 
                             <form id="contacts-form" action="addIndemnites.php" method="post">
@@ -66,7 +69,8 @@
                                             $result = mysql_query("SELECT * FROM etude");
                                             while ($tuple = mysql_fetch_object($result)) {
                                                 $id = $tuple->noEtude;
-                                                echo "<option value='$id'>$id</option>";
+                                                $designation = $tuple->convention;
+                                                echo "<option value='$id'>$id $designation</option>";
                                             }
                                             ?>
 
@@ -112,15 +116,14 @@
                                     mysql_select_db($base) or die('Base de donnes inexistante');
                                     $request = mysql_query("select * from indemnites join etude on etude.noEtude=indemnites.noEtude where noEtudiant='$noEtudiant'");
 
-                                    echo 'Voici la liste des etudes et les rémunérations nécessaire<br/>';
-                                    echo '<table><tr><td>num indemnité</td><td>nom étude</td><td>date</td><td>montant</td></tr>';
+                                    echo '<table><tr class="bold"><td>num indemnité</td><td class="big">nom étude</td><td>date</td><td>montant</td></tr>';
                                     while ($tuple = mysql_fetch_object($request)) {
                                         //
                                         $noIndemnite = $tuple->noIndemnite;
                                         $nomEtude = $tuple->convention;
                                         $date = $tuple->date;
                                         $montant = $tuple->montant;
-                                        echo "<tr><td>$noIndemnite</td><td>$nomEtude</td><td>$date</td><td>$montant</td>";
+                                        echo "<tr class='nobold'><td>$noIndemnite</td><td>$nomEtude</td><td>$date</td><td>$montant</td></tr>";
                                     }
                                     echo '</table>';
                                     mysql_close();
@@ -137,8 +140,7 @@
                                     mysql_select_db($base) or die('Base de donnes inexistante');
                                     $request = mysql_query("select etude.noEtude,etude.convention,cra.duree, prixJournee from etudiant join cra on etudiant.noEtudiant=cra.noEtudiant join etude on cra.noEtude=etude.noEtude where etudiant.noEtudiant='$noEtudiant'");
 
-                                    echo 'Voici la liste des etudes et les rémunérations nécessaire<br/>';
-                                    echo '<table><tr><td>num etude</td><td>nom etude</td><td>temps travaillé</td><td>taux journalier</td><td>taux journalier étudiant</td><td>nombre etudiant dans l\'équipe</td></tr>';
+                                    echo '<table><tr class="bold"><td>num </td><td class="big">nom etude</td><td>temps travaillé</td><td>taux etude</td><td>taux étudiant</td><td>nb etudiants</td></tr>';
                                     while ($tuple = mysql_fetch_object($request)) {
                                         //
                                         $noEtude = $tuple->noEtude;
@@ -146,7 +148,7 @@
                                         $duree = $tuple->duree;
                                         $prixJournee = $tuple->prixJournee;
                                         $tauxEtudiant = $prixJournee / 2;
-                                        echo "<tr><td>$nomEtude</td><td>$nomEtude</td><td>$duree</td><td>$prixJournee</td><td>$tauxEtudiant</td>";
+                                        echo "<tr class='nobold'><td>$noEtude</td><td>$nomEtude</td><td>$duree</td><td>$prixJournee</td><td>$tauxEtudiant</td>";
                                     }
                                     echo '</table>';
                                     mysql_close();

@@ -29,6 +29,7 @@
                 <nav>
                     <ul>
                         <li><a href="studentTool.php?return='null">Etudiant</a></li>
+                        <li><a href="equipeTool.php?return='null">Equipes</a></li>
                         <li><a href="corpTool.php?return='null'">Entreprise</a></li>
                         <li><a href="studyTool.php?return='null'">Etude</a></li>
                         <li><a href="fraistool.php?return='null'">Frais</a></li>
@@ -136,7 +137,7 @@
                                         /* affichage des �quipes associ�es � l'�tude qui vient d'�tre affich�e */
                                         $team = mysql_query("SELECT * FROM equipe WHERE noEtude='$id'");
                                         if (mysql_num_rows($team) === 0) {      //si aucune equipe, on affiche le lien qui envoie vers l'outil d'affectation*/
-                                            echo "<td><a href=\"teamTool.php?id=$id&amp;test=$id\">affectation equipe</a></td></tr>";
+                                            echo "<td><a href=\"teamTool.php?id=$id&amp;test=$id\">AFFECTATION EQUIPE</a></td></tr>";
                                         } else {
                                             echo "</tr>";
                                             while ($tupleTeam = mysql_fetch_object($team)) {

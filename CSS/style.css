@@ -160,8 +160,23 @@ h3 {
 		text-shadow: 1px 1px 1px #888; 
 	}
 
+td {
+	width:140px;
+}
+
+td.big {
+	width:300px;
+        
+}
+
+tr.bold {
+	font-weight:bold;
+}
 
 
+tr.nobold {
+	font-weight:lighter;
+}
 
 /*==================boxes====================*/
 .main-box {

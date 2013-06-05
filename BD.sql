@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 05 Juin 2013 à 11:40
+-- Généré le: Mer 05 Juin 2013 à 23:21
 -- Version du serveur: 5.5.29
 -- Version de PHP: 5.4.10
 
@@ -44,7 +44,7 @@ CREATE TABLE `cra` (
   PRIMARY KEY (`id`),
   KEY `noEtudiant` (`noEtudiant`),
   KEY `noEtude` (`noEtude`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `cra`
@@ -56,7 +56,9 @@ INSERT INTO `cra` (`id`, `noEtudiant`, `noEtude`, `dateDebut`, `duree`, `dateFin
 (4, 9, 7, '2013-05-13', 5, '2013-05-17'),
 (5, 4, 3, '2013-05-01', 4, '2013-05-07'),
 (6, 5, 7, '2013-05-09', 5, '2013-05-16'),
-(7, 10, 8, '2013-06-03', 5, '2013-06-07');
+(7, 10, 8, '2013-06-03', 5, '2013-06-07'),
+(8, 4, 7, '2013-05-06', 20, '2013-05-31'),
+(9, 4, 4, '2013-04-15', 15, '2013-05-03');
 
 -- --------------------------------------------------------
 
@@ -99,7 +101,7 @@ CREATE TABLE `equipe` (
   KEY `noResp` (`noResp`),
   KEY `noResp_2` (`noResp`),
   KEY `noEtude` (`noEtude`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `equipe`
@@ -110,7 +112,8 @@ INSERT INTO `equipe` (`noEquipe`, `noResp`, `noEtude`) VALUES
 (2, 4, 3),
 (3, 4, 8),
 (4, 10, 7),
-(6, 10, 9);
+(6, 10, 9),
+(8, 6, 11);
 
 -- --------------------------------------------------------
 
@@ -130,7 +133,7 @@ CREATE TABLE `etude` (
   PRIMARY KEY (`noEtude`),
   UNIQUE KEY `noEtude` (`noEtude`),
   KEY `noEnts` (`noEnts`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Contenu de la table `etude`
@@ -141,7 +144,8 @@ INSERT INTO `etude` (`noEtude`, `noEnts`, `dateDebut`, `duree`, `dateFin`, `prix
 (4, 2, '2013-04-10', 12, '2013-04-03', 150, 'Consulting systeme gestion base de donne', 1),
 (7, 1, '0000-00-00', 10, '0000-00-00', 200, 'pilotage arrosage automatique', 0),
 (8, 3, '0000-00-00', 25, '0000-00-00', 220, 'dev plugin outlook', 0),
-(9, 4, '0000-00-00', 18, '0000-00-00', 0, 'systÃ¨me automatique ', 1);
+(9, 4, '0000-00-00', 18, '0000-00-00', 0, 'systÃ¨me automatique ', 1),
+(11, 8, '2013-06-10', 5, '2013-06-14', 0, 'dÃ©velppement appli android', 0);
 
 -- --------------------------------------------------------
 
@@ -322,7 +326,11 @@ INSERT INTO `participant` (`noEquipe`, `noEtudiant`) VALUES
 (3, 10),
 (6, 9),
 (6, 6),
-(6, 6);
+(6, 6),
+(8, 10),
+(8, 15),
+(4, 4),
+(8, 4);
 
 -- --------------------------------------------------------
 

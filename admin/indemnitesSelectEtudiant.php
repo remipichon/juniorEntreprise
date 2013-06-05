@@ -29,6 +29,7 @@
                 <nav>
                     <ul>
                         <li><a href="studentTool.php?return='null">Etudiant</a></li>
+                        <li><a href="equipeTool.php?return='null">Equipes</a></li>
                         <li><a href="corpTool.php?return='null'">Entreprise</a></li>
                         <li><a href="studyTool.php?return='null'">Etude</a></li>
                         <li><a href="fraistool.php?return='null'">Frais</a></li>

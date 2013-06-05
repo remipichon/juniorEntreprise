@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>Etudiants </title>
+        <title>Equipe </title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
         <link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
@@ -74,7 +74,7 @@
                         <!-- content -->
                         <section id="content">
                             <article>
-                                <h2>Nos <span>Etudiant</span></h2>
+                                <h2>Nos <span>Equipe</span></h2>
                                 <ul class="contacts">
 
                                     <?php
@@ -89,16 +89,17 @@
                                     require 'bin/params.php';
                                     mysql_connect($host, $user, $password) or die('Impossible de se connecter au SGBD');
                                     mysql_select_db($base) or die('Base de donnes inexistante');
-                                    $request = mysql_query('SELECT * FROM etudiant');
+                                    $request = mysql_query('select equipe.noEquipe, etude.noEtude, convention, noResp, nomEtudiant from equipe join etude on equipe.noEtude=etude.noEtude join participant on participant.noEquipe=equipe.noEquipe join etudiant on participant.noEtudiant=etudiant.noEtudiant');
 
-                                    echo '<table><tr><td>NUM</td><td>NOM</td><td class="big">ADRESSE</td><td>NUM SECU</td></tr>';
+                                    echo '<table><tr class="bold"><td>NUM EQUIPE</td><td>NUM ETUDE</td><td class="big">DESIGNATION</td><td>NUM RESP</td><td>NOM ETUDIANT</td></tr>';
                                     while ($tuple = mysql_fetch_object($request)) {
                                         //etudiant
-                                        $id = $tuple->noEtudiant;
-                                        $nom = $tuple->nomEtudiant;
-                                        $adresse = $tuple->adresseEtudiant;
-                                        $noSecu = $tuple->noSecu;
-                                        echo "<tr><td>$id</td><td>$nom</td><td>$adresse</td><td>$noSecu</td>";
+                                        $id = $tuple->noEquipe;
+                                        $noEtude = $tuple->noEtude;
+                                        $convention = $tuple->convention;
+                                        $noResp = $tuple->noResp;
+                                        $nomEtudiant = $tuple->nomEtudiant;
+                                        echo "<tr><td>$id</td><td>$noEtude</td><td>$convention</td><td>$noResp</td><td>$nomEtudiant</td>";
                                         echo"<td><a href=\"modifyStudent.php?id=$id\">MODIFIER    </a></td>";
                                         echo "<td><a href=\"deleteStudent.php?id=$id\">DELETE</a></td></tr>";
 
