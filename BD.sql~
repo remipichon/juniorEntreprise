@@ -1,18 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.7
+-- version 3.3.9.2
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mer 05 Juin 2013 à 11:40
--- Version du serveur: 5.5.29
--- Version de PHP: 5.4.10
+-- Serveur: localhost
+-- Généré le : Ven 31 Mai 2013 à 14:06
+-- Version du serveur: 5.5.9
+-- Version de PHP: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 --
 -- Base de données: `junior_entreprise`
 --
+CREATE DATABASE `junior_entreprise` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `junior_entreprise`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +28,11 @@ CREATE TABLE `accompte` (
   PRIMARY KEY (`noAccompte`),
   KEY `noEtudiant` (`noEtudiant`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `accompte`
+--
+
 
 -- --------------------------------------------------------
 
@@ -44,19 +50,17 @@ CREATE TABLE `cra` (
   PRIMARY KEY (`id`),
   KEY `noEtudiant` (`noEtudiant`),
   KEY `noEtude` (`noEtude`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `cra`
 --
 
-INSERT INTO `cra` (`id`, `noEtudiant`, `noEtude`, `dateDebut`, `duree`, `dateFin`) VALUES
-(1, 7, 7, '0000-00-00', 7, '0000-00-00'),
-(2, 5, 4, '0000-00-00', 7, '0000-00-00'),
-(4, 9, 7, '2013-05-13', 5, '2013-05-17'),
-(5, 4, 3, '2013-05-01', 4, '2013-05-07'),
-(6, 5, 7, '2013-05-09', 5, '2013-05-16'),
-(7, 10, 8, '2013-06-03', 5, '2013-06-07');
+INSERT INTO `cra` VALUES(1, 7, 7, '0000-00-00', 7, '0000-00-00');
+INSERT INTO `cra` VALUES(2, 5, 4, '0000-00-00', 7, '0000-00-00');
+INSERT INTO `cra` VALUES(4, 9, 7, '2013-05-13', 5, '2013-05-17');
+INSERT INTO `cra` VALUES(5, 4, 3, '2013-05-01', 4, '2013-05-07');
+INSERT INTO `cra` VALUES(6, 5, 7, '2013-05-09', 5, '2013-05-16');
 
 -- --------------------------------------------------------
 
@@ -65,25 +69,21 @@ INSERT INTO `cra` (`id`, `noEtudiant`, `noEtude`, `dateDebut`, `duree`, `dateFin
 --
 
 CREATE TABLE `entreprise` (
-  `noEnts` int(255) NOT NULL AUTO_INCREMENT,
+  `noEnts` int(11) NOT NULL AUTO_INCREMENT,
   `nomEnts` varchar(20) NOT NULL,
   `adresseEnts` varchar(40) NOT NULL,
-  `telEnts` varchar(15) NOT NULL,
+  `telEnts` int(11) NOT NULL,
   PRIMARY KEY (`noEnts`),
   UNIQUE KEY `noEnts` (`noEnts`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='table entreprise (1 -> 1..* convention)' AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='table entreprise (1 -> 1..* convention)' AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `entreprise`
 --
 
-INSERT INTO `entreprise` (`noEnts`, `nomEnts`, `adresseEnts`, `telEnts`) VALUES
-(1, 'ents1', 'adrents1', '411'),
-(2, 'ents2', 'adrents2', '422'),
-(3, 'Entreprise success', '8 rue de la carriere', '1'),
-(4, 'soullard&moula', '18 rue de la bourbe', '+33682456790'),
-(8, 'google', '15 rue de la technologie', '+33745238765'),
-(9, 'samsung', '3 rue des innovations', '0645234165');
+INSERT INTO `entreprise` VALUES(1, 'ents1', 'adrents1', 411);
+INSERT INTO `entreprise` VALUES(2, 'ents2', 'adrents2', 422);
+INSERT INTO `entreprise` VALUES(3, 'Entreprise success', '8 rue de la carriere', 1);
 
 -- --------------------------------------------------------
 
@@ -99,18 +99,16 @@ CREATE TABLE `equipe` (
   KEY `noResp` (`noResp`),
   KEY `noResp_2` (`noResp`),
   KEY `noEtude` (`noEtude`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `equipe`
 --
 
-INSERT INTO `equipe` (`noEquipe`, `noResp`, `noEtude`) VALUES
-(1, 4, 4),
-(2, 4, 3),
-(3, 4, 8),
-(4, 10, 7),
-(6, 10, 9);
+INSERT INTO `equipe` VALUES(1, 4, 4);
+INSERT INTO `equipe` VALUES(2, 4, 3);
+INSERT INTO `equipe` VALUES(3, 4, 8);
+INSERT INTO `equipe` VALUES(4, 10, 7);
 
 -- --------------------------------------------------------
 
@@ -121,27 +119,24 @@ INSERT INTO `equipe` (`noEquipe`, `noResp`, `noEtude`) VALUES
 CREATE TABLE `etude` (
   `noEtude` int(11) NOT NULL AUTO_INCREMENT,
   `noEnts` int(11) NOT NULL,
-  `dateDebut` varchar(80) NOT NULL,
+  `dateDebut` date NOT NULL,
   `duree` int(11) NOT NULL,
   `dateFin` date NOT NULL,
   `prixJournee` int(11) NOT NULL,
   `convention` varchar(40) NOT NULL,
-  `statut` tinyint(4) NOT NULL,
   PRIMARY KEY (`noEtude`),
   UNIQUE KEY `noEtude` (`noEtude`),
   KEY `noEnts` (`noEnts`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `etude`
 --
 
-INSERT INTO `etude` (`noEtude`, `noEnts`, `dateDebut`, `duree`, `dateFin`, `prixJournee`, `convention`, `statut`) VALUES
-(3, 1, '2013-04-01', 10, '2013-04-10', 180, 'Logiciel gestion salaires', 1),
-(4, 2, '2013-04-10', 12, '2013-04-03', 150, 'Consulting systeme gestion base de donne', 1),
-(7, 1, '0000-00-00', 10, '0000-00-00', 200, 'pilotage arrosage automatique', 0),
-(8, 3, '0000-00-00', 25, '0000-00-00', 220, 'dev plugin outlook', 0),
-(9, 4, '0000-00-00', 18, '0000-00-00', 0, 'systÃ¨me automatique ', 1);
+INSERT INTO `etude` VALUES(3, 1, '2013-04-01', 10, '2013-04-10', 180, 'Logiciel gestion salaires');
+INSERT INTO `etude` VALUES(4, 2, '2013-04-10', 12, '2013-04-03', 150, 'Consulting systeme gestion base de donne');
+INSERT INTO `etude` VALUES(7, 1, '0000-00-00', 10, '0000-00-00', 200, 'pilotage arrosage automatique');
+INSERT INTO `etude` VALUES(8, 3, '0000-00-00', 25, '0000-00-00', 220, 'dev plugin outlook');
 
 -- --------------------------------------------------------
 
@@ -150,29 +145,24 @@ INSERT INTO `etude` (`noEtude`, `noEnts`, `dateDebut`, `duree`, `dateFin`, `prix
 --
 
 CREATE TABLE `etudiant` (
-  `noEtudiant` int(255) NOT NULL AUTO_INCREMENT,
-  `nomEtudiant` varchar(11) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `adresseEtudiant` varchar(150) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `noEtudiant` int(11) NOT NULL AUTO_INCREMENT,
+  `nomEtudiant` varchar(11) NOT NULL,
+  `adresseEtudiant` varchar(11) NOT NULL,
   `noSecu` int(11) NOT NULL,
   PRIMARY KEY (`noEtudiant`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`noEtudiant`, `nomEtudiant`, `adresseEtudiant`, `noSecu`) VALUES
-(4, 'Charles', '3 rue grandchemin', 1111111),
-(5, 'rene', '29 place de la fontaine', 672829),
-(6, 'francois', '3 rue du chien fidèle', 333),
-(7, 'paul', '4 rue du plat', 444),
-(8, 'luc', '3 impasse de la bourbe', 67983),
-(9, 'Claude', '5 rue de la colline', 555),
-(10, 'guillaume', '3 rue de la baraudière', 1820572),
-(12, 'remi', '1 rue montagne qui gagne', 5436710),
-(13, 'Alphonse', '', 4321),
-(14, 'pauline', '4 rue de la mer', 78005672),
-(15, 'emilie', '5 rue des angevins', 0);
+INSERT INTO `etudiant` VALUES(4, 'marcel jean', '3 rue grand', 1111111);
+INSERT INTO `etudiant` VALUES(5, 'etu2', 'adreetu2', 122);
+INSERT INTO `etudiant` VALUES(6, 'etu3', '3 rue du ch', 333);
+INSERT INTO `etudiant` VALUES(7, 'etu4', '4 rue du pl', 444);
+INSERT INTO `etudiant` VALUES(8, 'etu4', '4 rue du pl', 444);
+INSERT INTO `etudiant` VALUES(9, 'etu5', '5 rue de la', 555);
+INSERT INTO `etudiant` VALUES(10, 'guillaume', '3 rue de la', 1820572);
 
 -- --------------------------------------------------------
 
@@ -188,16 +178,12 @@ CREATE TABLE `facture` (
   PRIMARY KEY (`noFacture`),
   KEY `noFacture` (`noFacture`),
   KEY `noEtude` (`noEtude`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `facture`
 --
 
-INSERT INTO `facture` (`noFacture`, `date`, `montant`, `noEtude`) VALUES
-(1, '0000-00-00', 3086, 3),
-(2, '0000-00-00', 2571, 4),
-(3, '0000-00-00', 12, 9);
 
 -- --------------------------------------------------------
 
@@ -217,20 +203,19 @@ CREATE TABLE `frais` (
   KEY `noEtudiant` (`noEtudiant`),
   KEY `noEtude` (`noEtude`),
   KEY `noFrais` (`noFrais`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `frais`
 --
 
-INSERT INTO `frais` (`noFrais`, `date`, `montDep`, `montSejour`, `montAutre`, `noEtudiant`, `noEtude`) VALUES
-(3, '0000-00-00', 10, 0, 0, 5, 3),
-(6, '0000-00-00', 50, 230, 55, 7, 4),
-(7, '0000-00-00', 34, 87, 23, 6, 3),
-(8, '2013-05-23', 50, 50, 50, 9, 3),
-(9, '2013-05-25', 22, 22, 22, 5, 7),
-(10, '2013-06-05', 10, 0, 0, 15, 9),
-(11, '0000-00-00', 153, 153, 153, 15, 3);
+INSERT INTO `frais` VALUES(1, '0000-00-00', 0, 0, 0, 4, 3);
+INSERT INTO `frais` VALUES(2, '0000-00-00', 0, 0, 0, 4, 3);
+INSERT INTO `frais` VALUES(3, '0000-00-00', 10, 0, 0, 5, 3);
+INSERT INTO `frais` VALUES(6, '0000-00-00', 50, 230, 55, 7, 4);
+INSERT INTO `frais` VALUES(7, '0000-00-00', 34, 87, 23, 6, 3);
+INSERT INTO `frais` VALUES(8, '2013-05-23', 50, 50, 50, 9, 3);
+INSERT INTO `frais` VALUES(9, '2013-05-25', 22, 22, 22, 5, 7);
 
 -- --------------------------------------------------------
 
@@ -254,39 +239,14 @@ CREATE TABLE `indemnites` (
 -- Contenu de la table `indemnites`
 --
 
-INSERT INTO `indemnites` (`noIndemnite`, `date`, `nbJourEtude`, `montant`, `noEtudiant`, `noEtude`) VALUES
-(1, '2013-04-02', 10, 45, 4, 3),
-(2, '2013-05-23', 2, 100, 6, 4),
-(6, '2013-05-27', 7, 77, 4, 7),
-(7, '2013-05-24', 4, 44, 4, 4),
-(8, '2013-05-17', 17, 117, 4, 7),
-(9, '2013-05-03', 30, 300, 4, 3),
-(10, '2013-05-14', 1, 29, 5, 4),
-(12, '2013-05-11', 2, 60, 5, 7);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `inscriptions`
---
-
-CREATE TABLE `inscriptions` (
-  `numero` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `login` varchar(20) NOT NULL,
-  `pass` varchar(10) NOT NULL,
-  `prenom` varchar(20) NOT NULL,
-  `pseudo` varchar(20) NOT NULL,
-  `icq` int(10) unsigned NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `commentaires` varchar(200) NOT NULL,
-  `question` varchar(1) NOT NULL,
-  `ip` varchar(15) NOT NULL,
-  `domaine` varchar(200) NOT NULL,
-  `navigateur` varchar(200) NOT NULL,
-  `dateYMDheure` datetime NOT NULL,
-  PRIMARY KEY (`numero`),
-  UNIQUE KEY `numero` (`numero`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `indemnites` VALUES(1, '2013-04-02', 10, 45, 4, 3);
+INSERT INTO `indemnites` VALUES(2, '2013-05-23', 2, 100, 6, 4);
+INSERT INTO `indemnites` VALUES(6, '2013-05-27', 7, 77, 4, 7);
+INSERT INTO `indemnites` VALUES(7, '2013-05-24', 4, 44, 4, 4);
+INSERT INTO `indemnites` VALUES(8, '2013-05-17', 17, 117, 4, 7);
+INSERT INTO `indemnites` VALUES(9, '2013-05-03', 30, 300, 4, 3);
+INSERT INTO `indemnites` VALUES(10, '2013-05-14', 1, 29, 5, 4);
+INSERT INTO `indemnites` VALUES(12, '2013-05-11', 2, 60, 5, 7);
 
 -- --------------------------------------------------------
 
@@ -309,20 +269,16 @@ CREATE TABLE `participant` (
 -- Contenu de la table `participant`
 --
 
-INSERT INTO `participant` (`noEquipe`, `noEtudiant`) VALUES
-(1, 5),
-(4, 5),
-(4, 6),
-(4, 7),
-(4, 9),
-(1, 4),
-(1, 8),
-(3, 4),
-(3, 6),
-(3, 10),
-(6, 9),
-(6, 6),
-(6, 6);
+INSERT INTO `participant` VALUES(1, 5);
+INSERT INTO `participant` VALUES(4, 5);
+INSERT INTO `participant` VALUES(4, 6);
+INSERT INTO `participant` VALUES(4, 7);
+INSERT INTO `participant` VALUES(4, 9);
+INSERT INTO `participant` VALUES(1, 4);
+INSERT INTO `participant` VALUES(1, 8);
+INSERT INTO `participant` VALUES(3, 4);
+INSERT INTO `participant` VALUES(3, 6);
+INSERT INTO `participant` VALUES(3, 10);
 
 -- --------------------------------------------------------
 
@@ -339,6 +295,11 @@ CREATE TABLE `remboursement` (
   KEY `noEtudiant` (`noFrais`),
   KEY `noFrais` (`noFrais`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `remboursement`
+--
+
 
 --
 -- Contraintes pour les tables exportées

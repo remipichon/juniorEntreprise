@@ -1,6 +1,7 @@
 <head>
     <title>Bienvenue</title>
-     <link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
+    <LINK rel="stylesheet" type="text/css" href="css/style.css"> 
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
     <link rel="stylesheet" type="text/css" href="css/alertify.core.css"></link>
     <link rel="stylesheet" type="text/css" href="css/alertify.default.css"></link>   
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"></link>   
@@ -39,12 +40,12 @@
             $('#submitStudent').trigger('click');     //simule le click pour envoyer le formulaire POST
         }
         
-        //en construction, pas utilisée
+        //en construction, pas utilisï¿½e
         jQuery.fn.addInputStudent = function() {                
                             
                 /*
                  * Lorsqu'on appuie sur une touche dans l'input de this :
-                 *      -on ajoute après ce dernier un nouveau champ de saisi (le insertAfter)
+                 *      -on ajoute aprï¿½s ce dernier un nouveau champ de saisi (le insertAfter)
                  *      -et on lui affecte la fonction addInput() (celle dans laquelle on est)
                  */
                 $(this).on('keydown.add', function() {      

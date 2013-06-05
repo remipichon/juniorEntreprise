@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>Frais </title>
+        <title>Contact us - Contacts Page </title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
         <link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
@@ -33,7 +33,7 @@
                         <li><a href="studyTool.php?return='null'">Etude</a></li>
                         <li><a href="fraistool.php?return='null'">Frais</a></li>
                         <li><a href="indemnitesSelectEtudiant.php">Indemnités</a></li>
-                        <li><a href="craTool.php">CRA</a></li>
+                        <li><a href="craTool.php">Compte rendu d'activite</a></li>
                         <li><a href="factureTool.php">Facturation</a></li>
                     </ul>
                 </nav>
@@ -47,59 +47,24 @@
                     <div class="wrapper">
                         <!-- aside -->
                         <aside>
-                            <h2>Ajouter <span>Frais</span></h2>
+                            <h2>Ajouter <span>Etudiant</span></h2>
                             <!-- .contacts -->
-                            <form id="contacts-form" action="addFrais.php" method="post">
+                            <form id="contacts-form" action="addStudent.php" method="post">
                                 <fieldset>
                                     <div class="field">
-                                        <select name="noEtudiant">
-                                            <option value="-1" selected="selected">Choisir le numero d'etudiant</option>
-                                            <?php
-                                            require 'bin/params.php';
-                                            mysql_connect($hots, $user, $password);
-                                            mysql_select_db($base);
-                                            $result = mysql_query("SELECT * FROM etudiant");
-                                            while ($tuple = mysql_fetch_object($result)) {
-                                                $id = $tuple->noEtudiant;
-                                                echo "<option value='$id'>$id</option>";
-                                            }
-                                            ?>
-                                        </select></div>
-                                    <div class="field">
-                                        <select name="noEtude">
-                                            <option value="-1" selected="selected">Choisir le numero de convention</option>
-                                            <?php
-                                            require 'bin/params.php';
-                                            mysql_connect($hots, $user, $password);
-                                            mysql_select_db($base);
-                                            $result = mysql_query("SELECT * FROM etude");
-                                            while ($tuple = mysql_fetch_object($result)) {
-                                                $id = $tuple->noEtude;
-                                                $nomEtude = $tuple->convention;
-                                                echo "<option value='$id'>$id $nomEtude</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="field">
-                                        <label>date du frais :</label>
-                                        <input name="date" type="date" /> 
+                                        <label> Nom :</label>
+                                        <input name="name" type="text" value=""/>
                                     </div>
                                     <div class="field">
-                                        <label>Montant déplacement :</label>
-                                        <input name="montDep" type="text" />
+                                        <label>Adresse :</label>
+                                        <input name="adress" type="text" value=""/>
                                     </div>
                                     <div class="field">
-                                        <label>Montant séjour :</label>
-                                        <input name="montSej" type="text" />
-                                    </div>
-                                    <div class="field">
-                                        <label>Montant autre :</label>
-                                        <input name="montAut" type="text" />
+                                        <label>N° sécurité sociale :</label>
+                                        <input name="secuNum" type="text" value=""/>
                                     </div>
                                     <div>
-                                        <input type="submit" value="Ajouter frais" /><br/>
+                                        <input type="submit" value="Ajouter Etudiant" /><br/>
                                     </div>
                                 </fieldset>
                             </form>
@@ -108,7 +73,7 @@
                         <!-- content -->
                         <section id="content">
                             <article>
-                                <h2>Les frais <span>enregistrés</span></h2>
+                                <h2>Nos <span>Etudiant</span></h2>
                                 <ul class="contacts">
 
                                     <?php
@@ -123,22 +88,18 @@
                                     require 'bin/params.php';
                                     mysql_connect($host, $user, $password) or die('Impossible de se connecter au SGBD');
                                     mysql_select_db($base) or die('Base de donnes inexistante');
-                                    $request = mysql_query('SELECT * FROM frais');
+                                    $request = mysql_query('SELECT * FROM etudiant');
 
-                                    echo '<table><tr><td>num etude</td><td>num etudiant</td><td>num frais</td><td>date</td><td>montant deplacement</td><td>montant sejour</td>
-            <td>montant autre</td></tr>';
+                                    echo '<table><tr><td>NUM</td><td>NOM</td><td>ADRESSE</td><td>NUM SECU</td></tr>';
                                     while ($tuple = mysql_fetch_object($request)) {
                                         //etudiant
-                                        $noFrais = $tuple->noFrais;
-                                        $date = $tuple->date;
-                                        $montDep = $tuple->montDep;
-                                        $montSejour = $tuple->montSejour;
-                                        $montAutre = $tuple->montAutre;
-                                        $noEtudiant = $tuple->noEtudiant;
-                                        $noEtude = $tuple->noEtude;
-                                        echo "<tr><td>$noEtude</td><td>$noEtudiant</td><td>$noFrais</td><td>$date</td><td>$montDep</td><td>$montSejour</td><td>$montAutre</td>";
-                                        echo"<td><a href=\"modifyFrais.php?id=$noFrais\">MODIFIER</a></td>";
-                                        echo "<td><a href=\"deleteFrais.php?id=$noFrais\">DELETE</a></td></tr>";
+                                        $id = $tuple->noEtudiant;
+                                        $nom = $tuple->nomEtudiant;
+                                        $adresse = $tuple->adresseEtudiant;
+                                        $noSecu = $tuple->noSecu;
+                                        echo "<tr><td>$id</td><td>$nom</td><td>$adresse</td><td>$noSecu</td>";
+                                        echo"<td><a href=\"modifyStudent.php?id=$id\">MODIFIER</a></td>";
+                                        echo "<td><a href=\"deleteStudent.php?id=$id\">   DELETE</a></td></tr>";
 
                                         //ses �quipes
 
@@ -154,6 +115,13 @@
                                     echo '</table>';
                                     mysql_close();
                                     ?>
+
+                                    <li><strong>Zip Code:</strong>50122</li>
+                                    <li><strong>Country:</strong>USA</li>
+                                    <li><strong>City:</strong>New York</li>
+                                    <li><strong>Telephone 1:</strong>+354 5635600</li>
+                                    <li><strong>Fax:</strong>+354 5635620</li>
+                                    <li><strong>Email:</strong><a href="#">businessco@mail.com</a></li>
                                 </ul>
                             </article> 
                         </section>
@@ -164,7 +132,8 @@
         <!-- footer -->
         <footer>
             <div class="container">
-                <div class="wrapper"></div>
+                <div class="wrapper">
+                </div>
             </div>
         </footer>
         <script type="text/javascript"> Cufon.now();</script>

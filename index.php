@@ -1,39 +1,73 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<html>
-    <?php require 'header.php'; ?>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Accueil </title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+        <script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
+        <script type="text/javascript" src="js/cufon-yui.js"></script>
+        <script type="text/javascript" src="js/Humanst521_BT_400.font.js"></script>
+        <script type="text/javascript" src="js/Humanst521_Lt_BT_400.font.js"></script>
+        <script type="text/javascript" src="js/cufon-replace.js"></script>
+        <script type="text/javascript" src="js/roundabout.js"></script>
+        <script type="text/javascript" src="js/roundabout_shapes.js"></script>
+        <script type="text/javascript" src="js/gallery_init.js"></script>
+        <!--[if lt IE 7]>
+              <link rel="stylesheet" href="css/ie/ie6.css" type="text/css" media="all">
+        <![endif]-->
+        <!--[if lt IE 9]>
+              <script type="text/javascript" src="js/html5.js"></script>
+          <script type="text/javascript" src="js/IE9.js"></script>
+        <![endif]-->
+    </head>
+
     <body>
-        <?php require 'menu.php'; ?>
-        <div>
-            google sphere
-            <g:panoembed id='sphereHome' imageurl="https://lh4.googleusercontent.com/-Oqf0-IYmTQk/UYvWQLdAoDI/AAAAAAAAAZI/n2soSS9nrZ8/w924-h352-no/13+-+1"
-                         fullsize="4096,2048"
-                         croppedsize="4096,1380"
-                         offset="0,480"
-                         displaysize="600,400"
-                         autorotate="1"/>
-
-            <script>
-                var height = window.innerHeight - 100;
-                var disp = window.innerWidth + "," + height;
-                $('#sphereHome').attr('displaysize', disp);
-                console.log($('#sphereHome').attr('displaysize'));
-                gapi.panoembed.go();
-            </script>
-
+        <!-- header -->
+        <header>
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="admin/studentTool.php?return='null">Etudiant</a></li>
+                        <li><a href="admin/corpTool.php?return='null'">Entreprise</a></li>
+                        <li><a href="admin/studyTool.php?return='null'">Etude</a></li>
+                        <li><a href="admin/fraistool.php?return='null'">Frais</a></li>
+                        <li><a href="admin/indemnitesSelectEtudiant.php">Indemnités</a></li>
+                        <li><a href="admin/craTool.php">Compte rendu d'activite</a></li>
+                        <li><a href="admin/factureTool.php">Facturation</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+  <!-- /#gallery -->
+  <div class="main-box">
+    <div class="container">
+      <div class="inside">
+        <div class="wrapper">
+        	<!-- aside -->
+          <aside>
+            
+            <!-- /.news -->
+          </aside>
+          <!-- content -->
+          <section id="content">
+            <article>
+            	<h2>Bienvenue <span>sur le site de la junior entreprise</span></h2>
+              <p>Noter société est spécialisé dans le consulting en ingénieurie</p>
+              <figure><a href="#"><img src="images/banner1.jpg" alt=""></a></figure>
+            </article> 
+          </section>
         </div>
-
-
-        <div>
-            <?php
-            $attribut = array('nomEtudiant' => 'nameStudent', 'adresseEtudiant' => 'adress', 'noSecu' => 'numSecu');
-            $attribut = serialize($attribut);
-            $table = 'etudiant';
-            echo "<div><a href='ckeditorInline.php?table=$table&amp;attr=$attribut'>test array</a>   </div> ";
-            ?>           
-
-
-        </div>
-
-
-    </body>
+      </div>
+    </div>
+  </div>
+  <!-- footer -->
+  <footer>
+    <div class="container">
+    	<div class="wrapper"></div>
+    </div>
+  </footer>
+  <script type="text/javascript"> Cufon.now(); </script>
+</body>
 </html>

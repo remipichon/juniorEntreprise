@@ -1,5 +1,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK rel="stylesheet" type="text/css" href="css/style.css">
 <div class="menu" >
     <a href="index.php">Accueil</a>
 
